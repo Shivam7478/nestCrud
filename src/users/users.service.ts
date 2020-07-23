@@ -24,35 +24,28 @@ export class UsersService {
       throw new ConflictException('Error', error.message);
     }
   }
-  async createNewUser(
-    firstName: string,
-    lastName: string,
-    dob: string,
-    phone: string,
-    email: string,
-    password: string,
-    cpassword: string,
+  async createNewUser(data :any
   ) {
     let user;
     try {
-      user = await this.userModel.find({ email: email });
+      user = await this.userModel.find({ email: data.email });
 
       if (user && user.length) {
         throw new NotFoundException('User already exists');
       }
-      if (password != cpassword) {
+      if (data.password != data.cpassword) {
         throw new BadRequestException(
           'password & confirm password should match',
         );
       }
-      const newUser = new this.userModel({
-        firstName,
-        lastName,
-        dob,
-        email,
-        password,
-        phone,
-      });
+      const newUser = new this.userModel(
+        data.firstName,
+        data.lastName,
+       data. dob,
+        data.email,
+        data.password,
+        data.phone,
+      );
       newUser.save();
       return newUser;
     } catch (error) {

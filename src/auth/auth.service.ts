@@ -23,24 +23,8 @@ export class AuthService {
     };
   }
 
-  async signupUser(
-    firstName: string,
-    lastName: string,
-    dob: string,
-    phone: string,
-    email: string,
-    password: string,
-    cpassword: string,
-  ) {
-    let result = await this.usersService.createNewUser(
-      firstName,
-      lastName,
-      dob,
-      phone,
-      email,
-      password,
-      cpassword,
-    );
+  async signupUser(data) {
+    let result = await this.usersService.createNewUser(data);
 
     return result;
   }

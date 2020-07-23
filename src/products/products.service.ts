@@ -7,12 +7,8 @@ export class ProductsService {
   constructor(
     @InjectModel('Product') private readonly productModel: Model<Product>,
   ) {}
-  async insertProduct(title: string, desc: string, price: number) {
-    const newProduct = new this.productModel({
-      title,
-      description: desc,
-      price,
-    });
+  async insertProduct(data) {
+    const newProduct = new this.productModel(data);
     const result = await newProduct.save();
     return result.id as string;
   }
@@ -45,21 +41,21 @@ export class ProductsService {
     }
   }
 
- async updateProduct(prodId: string, title: string, desc: string, price: number) {
+ async updateProduct(prodId,data) {
     let updatedProduct;
     try {
         updatedProduct = await this.productModel.findById(prodId);
       if (!updatedProduct) {
         throw new NotFoundException('Could not found product');
       }
-    if (title) {
-      updatedProduct.title = title;
+    if (data.title) {
+      updatedProduct.title = data.title;
     }
-    if (desc) {
-      updatedProduct.description = desc;
+    if (data.description) {
+      updatedProduct.description = data.desc;
     }
-    if (price) {
-      updatedProduct.price = price;
+    if (data.price) {
+      updatedProduct.price = data.price;
     }
      updatedProduct.save()
     } catch (error) {
