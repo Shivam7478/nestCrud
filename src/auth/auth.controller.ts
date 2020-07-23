@@ -24,4 +24,12 @@ export class AuthController {
     );
     return { msg: 'User register successfully', payload: result };
   }
+  @Post('forgotPassword')
+  async forgotPassword(
+    @Body('email') email:string
+  ) {
+    const result = await this.authService.forgotPassword(  email
+    );
+    return { msg: 'Please check your email', payload: result };
+  }
 }
