@@ -28,7 +28,7 @@ import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
     })
     ,MulterModule.register({
     dest: './files',
-  }),ProductsModule,MongooseModule.forRoot('mongodb+srv://admin:admin@reactlogin-roglq.mongodb.net/test?retryWrites=true&w=majority'), AuthModule, UsersModule],
+  }),ProductsModule,MongooseModule.forRoot('mongoDB connection string should be here'), AuthModule, UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })
