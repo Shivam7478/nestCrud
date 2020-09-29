@@ -13,7 +13,7 @@ import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
   imports: [
     MailerModule.forRootAsync({
       useFactory: () => ({
-        transport: 'smtps://shivm7478@gmail.com:Shiv@7442@smtp.gmail.com',
+        transport: 'smtps://shivm7478@gmail.com:<your-password-here>@smtp.gmail.com',
         defaults: {
           from:'"nest-modules" <modules@nestjs.com>',
         },
